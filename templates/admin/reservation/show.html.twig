@@ -1,0 +1,144 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title">Mesaages Page</h4>
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/home">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Messages</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+
+    <h2 class="page-title">Reservation</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation[0].id }}</td>
+            </tr>
+            <tr>
+                <th>User</th>
+                <td><a href="{{ path('admin_user_show', {'id': reservation[0].userid}) }}">{{ reservation[0].uname }}</a></td>
+            </tr>
+            <tr>
+                <th>Book</th>
+                <td><a href="{{ path("book_show", {"id": reservation[0].bookid}) }}">{{ reservation[0].oname }}</a></td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ reservation[0].name }}</td>
+            </tr>
+            <tr>
+                <th>Surname</th>
+                <td>{{ reservation[0].surname }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ reservation[0].email }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ reservation[0].phone }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ reservation[0].checkin ? reservation[0].checkin|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ reservation[0].checkout ? reservation[0].checkout|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Days</th>
+                <td>{{ reservation[0].days }}</td>
+            </tr>
+            <tr>
+                <th>Ip</th>
+                <td>{{ reservation[0].ip }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ reservation[0].message }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ reservation[0].note }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ reservation[0].status }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ reservation[0].created_at ? reservation[0].created_at|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{{ reservation[0].updated_at ? reservation[0].updated_at|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+        <a href="{{ path('admin_reservation_edit', {'id': reservation[0].id}) }}" class="btn btn-done btn-lg btn-light" style="clear: both">Edit</a>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    {% endblock %}

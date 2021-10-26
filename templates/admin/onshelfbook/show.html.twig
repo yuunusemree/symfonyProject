@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OnShelfBook{% endblock %}
+
+{% block body %}
+    <h1>OnShelfBook</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ onshelfbook.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ onshelfbook.title }}</td>
+            </tr>
+            <tr>
+                <th>Bookid</th>
+                <td>{{ onshelfbook.bookid }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ onshelfbook.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ onshelfbook.image }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ onshelfbook.status }}</td>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <td>{{ onshelfbook.number }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_onshelfbook_index') }}">back to list</a>
+
+    <a href="{{ path('admin_onshelfbook_edit', {'id': onshelfbook.id}) }}">edit</a>
+
+    {{ include('admin/onshelfbook/_delete_form.html.twig') }}
+{% endblock %}

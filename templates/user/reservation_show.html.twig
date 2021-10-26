@@ -1,0 +1,105 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }}'s Reservations{% endblock %}
+
+{% block body %}
+
+    <!-- Start: Page Banner -->
+    <section class="page-banner services-banner">
+        <div class="container">
+            <div class="banner-header">
+                <h2>User Reservations Listing</h2>
+                <span class="underline center"></span>
+            </div>
+            <div class="breadcrumb">
+                <ul>
+                    <li><a href="{{path('home')}}">Home</a></li>
+                    <li>User Reservations</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- End: Page Banner -->
+
+    <div style="width: 800px; height: 300px"></div>
+
+    <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+                <div class="books-media-list">
+                    <div class="container">
+
+                        {{ include('user/usermenu.html.twig') }}
+
+                        <div class="row" style=" margin: -265px 0 0 300px; float: left">
+
+                            <div class="booksmedia-detail-box">
+
+                                <br>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Book</th>
+                                            <td><a href="{{ path("book_show", {"id": reservation[0].bookid}) }}">{{ reservation[0].oname }}</a></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Name</th>
+                                            <td>{{ reservation[0].name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Surname</th>
+                                            <td>{{ reservation[0].surname }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Email</th>
+                                            <td>{{ reservation[0].email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Phone</th>
+                                            <td>{{ reservation[0].phone }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Checkin</th>
+                                            <td>{{ reservation[0].checkin | date("m-d-Y") }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Checkout</th>
+                                            <td>{{ reservation[0].checkout | date("m-d-Y") }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Days</th>
+                                            <td>{{ reservation[0].days }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Message</th>
+                                            <td>{{ reservation[0].message }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Note</th>
+                                            <td>{{ reservation[0].note }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Status</th>
+                                            <td>{{ reservation[0].status }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Date</th>
+                                            <td>{{ reservation[0].created_at }}</td>
+                                        </tr>
+                                        <!--<tr>
+                                            <th>Actions</th>
+                                            <td>
+                                                <button class="btn"><a href="{{ path('user_reservation_show', {'id': reservation[0].id}) }}" style="color: white">Show</a></button>
+                                            </td>
+                                        </tr>-->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock %}

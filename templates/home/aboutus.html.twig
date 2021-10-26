@@ -1,0 +1,99 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %} About Us | {{setting[0].title}}{% endblock %}
+{% block keywords %}{{ setting[0].keywords }}{% endblock %}
+{% block description %}{{ setting[0].description }}{% endblock %}
+
+{% block body %}
+
+    <!-- Start: Page Banner -->
+    <section class="page-banner services-banner">
+        <div class="container">
+            <div class="banner-header">
+                <h2>About Us</h2>
+                <span class="underline center"></span>
+                <p class="lead">The best library </p>
+            </div>
+            <div class="breadcrumb">
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li>Services</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- End: Page Banner -->
+    <!-- Start: Services Section -->
+    <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+                <div class="services-main">
+                    <div class="services-pg">
+                        <div style="width: 200px; height: 70px"></div>
+                        <section class="who-we-are">
+                            <div class="company-info">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm-8 border">
+                                            <div class="row">
+                                                <div class="col-sm-11">
+                                                    <div class="company-detail">
+                                                        <h3 class="section-title">Who we are</h3>
+                                                        <span class="underline left"></span>
+                                                        <p>{{ setting[0].aboutus | raw }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="company-image"></div>
+                            </div>
+                        </section>
+                        <div class="fun-stuff">
+                            <div class="container">
+                                <div class="facts-counter">
+                                    <ul>
+                                        <li class="col-sm-3">
+                                            <div class="fact-item icon-ebooks">
+                                                <div class="fact-icon">
+                                                    <img src="images/icon-ebooks.png" alt="" />
+                                                </div>
+                                                <span>eBooks<strong class="fact-counter">45780</strong></span>
+                                            </div>
+                                        </li>
+                                        <li class="col-sm-3">
+                                            <div class="fact-item icon-eaudio">
+                                                <div class="fact-icon">
+                                                    <img src="images/icon-eaudio.png" alt="" />
+                                                </div>
+                                                <span>eAudio<strong class="fact-counter">32450</strong></span>
+                                            </div>
+                                        </li>
+                                        <li class="col-sm-3">
+                                            <div class="fact-item icon-magazine">
+                                                <div class="fact-icon">
+                                                    <img src="images/icon-magazine.png" alt="" />
+                                                </div>
+                                                <span>Magazine<strong class="fact-counter">14450</strong></span>
+                                            </div>
+                                        </li>
+                                        <li class="col-sm-3">
+                                            <div class="fact-item icon-videos">
+                                                <div class="fact-icon">
+                                                    <img src="images/icon-videos.png" alt="" />
+                                                </div>
+                                                <span>Videos<strong class="fact-counter">32450</strong></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock %}

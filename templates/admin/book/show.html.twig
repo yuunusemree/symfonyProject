@@ -1,0 +1,124 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Book{% endblock %}
+
+{% block body %}
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title">Show Book Page</h4>
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/admin">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Show Book</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h1>Book</h1>
+
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ book.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Title</th>
+                                    <td>{{ book.title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Keywords</th>
+                                    <td>{{ book.keywords }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{ book.description }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Image</th>
+                                    <td><img src="{{ asset('uploads/images/' ~ book.image) }}" height="70"></td>
+                                </tr>
+                                <tr>
+                                    <th>Author</th>
+                                    <td>{{ book.author }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Publisher</th>
+                                    <td>{{ book.publisher }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Year</th>
+                                    <td>{{ book.year ? book.year|date('Y-m-d') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Page</th>
+                                    <td>{{ book.page }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <td>{{ book.status }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Created_at</th>
+                                    <td>{{ book.createdAt ? book.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Updated_at</th>
+                                    <td>{{ book.updatedAt ? book.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="btn-block" >
+                            <a href="{{ path('admin_book_edit', {'id': book.id}) }}" class="btn-done btn-lg btn-light" style="clear: both">Edit</a>
+
+                            {{ include('admin/book/_delete_form.html.twig') }}
+                        </div>
+                        <a href="{{ path('admin_book_index') }}" style="float: right; margin-top: -30px;" class="btn-primary btn-lg">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+{% endblock %}

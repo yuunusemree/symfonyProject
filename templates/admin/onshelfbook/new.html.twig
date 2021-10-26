@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{book.title}}{% endblock %}
+
+{% block body %}
+    <h1>{{ book.title }}</h1>
+    <h4>Create new OnShelfBook</h4>
+
+    {{ include('admin/onshelfbook/_form.html.twig') }}
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Bookid</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Status</th>
+            <th>Number</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for onshelfbook in onshelfbooks %}
+            <tr>
+                <td>{{ onshelfbook.id }}</td>
+                <td>{{ onshelfbook.title }}</td>
+                <td>{{ onshelfbook.bookid }}</td>
+                <td>{{ onshelfbook.description }}</td>
+                <td><img src="{{ asset('uploads/images/' ~ onshelfbook.image) }}" height="60"/></td>
+                <td>{{ onshelfbook.status }}</td>
+                <td>{{ onshelfbook.number }}</td>
+                <td>
+                    <a href="{{ path('admin_onshelfbook_edit', {'id': onshelfbook.id, 'bid': book.id}) }}">Edit</a>
+                </td>
+                <td>
+                    <form method="post" action="{{ path('admin_onshelfbook_delete', {'id': onshelfbook.id, 'bid': book.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ onshelfbook.id) }}">
+                        <button class="btn-block btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

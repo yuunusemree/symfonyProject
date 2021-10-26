@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit OnShelfBook{% endblock %}
+
+{% block body %}
+    <h1>Edit OnShelfBook</h1>
+
+    {{ include('admin/onshelfbook/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admin_onshelfbook_index') }}">back to list</a>
+
+    {{ include('admin/onshelfbook/_delete_form.html.twig') }}
+{% endblock %}

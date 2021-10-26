@@ -1,0 +1,64 @@
+<!-- Start: Slider Section -->
+<div data-ride="carousel" class="carousel slide" id="home-v1-header-carousel">
+    <!-- Carousel slides -->
+        <div class="carousel-inner">
+            {% set count=0 %}
+            {%  for rs in slider %}
+            {% set count=count+1 %}
+            <div class="item {% if count==1 %}active{% endif %}">
+                <figure>
+                    <img src="{{ asset('uploads/images/' ~ rs.image) }}" style="width: 1920px; height: 1000px">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h2>{{rs.title}}</h2>
+                            <p>{{rs.description}}</p>
+                            <div class="slide-buttons hidden-sm hidden-xs">
+                                <a href="{{ path('book_show', {'id': rs.id})}}" class="btn btn-primary">Read More</a>
+                                <a href="{{ path('book_show', {'id': rs.id})}}" class="btn btn-default">Reserve</a>
+                            </div>
+                        </div>
+                    </div>
+                </figure>
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#home-v1-header-carousel" data-slide="prev"></a>
+            <a class="right carousel-control" href="#home-v1-header-carousel" data-slide="next"></a>
+            {% endfor %}
+        </div>
+
+    <!--        <div class="item">
+            <figure>
+                <img alt="Home Slide" src="{{ asset('assets')}}/images/header-slider/home-v1/header-slide.jpg" />
+            </figure>
+            <div class="container">
+                <div class="carousel-caption">
+                    <h3>Online Learning Anytime, Anywhere!</h3>
+                    <h2>Discover Your Roots</h2>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humor, or randomized words.</p>
+                    <div class="slide-buttons hidden-sm hidden-xs">
+                        <a href="#" class="btn btn-primary">Read More</a>
+                        <a href="#" class="btn btn-default">Purchase</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <figure>
+                <img alt="Home Slide" src="{{ asset('assets')}}/images/header-slider/home-v1/header-slide.jpg" />
+            </figure>
+            <div class="container">
+                <div class="carousel-caption">
+                    <h3>Online Learning Anytime, Anywhere!</h3>
+                    <h2>Discover Your Roots</h2>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humor, or randomized words.</p>
+                    <div class="slide-buttons hidden-sm hidden-xs">
+                        <a href="#" class="btn btn-primary">Read More</a>
+                        <a href="#" class="btn btn-default">Purchase</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+-->
+</div>
+<!-- End: Slider Section -->

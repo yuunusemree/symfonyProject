@@ -1,0 +1,160 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+{% block keywords %}{{ book.keywords }}{% endblock %}
+{% block description %}{{ book.description }}{% endblock %}
+
+{% block body %}
+
+    <!-- Start: Page Banner -->
+    <section class="page-banner services-banner">
+        <div class="container">
+            <div class="banner-header">
+                <h2>{{ book.title }} Details</h2>
+                <span class="underline center"></span>
+            </div>
+            <div class="breadcrumb">
+                <ul>
+                    <li><a href="{{path('home')}}">Home</a></li>
+                    <li>Book Details</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- End: Page Banner -->
+
+    <div class="col-md-12" style="height: 40px"></div>
+
+    <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+                <div class="booksmedia-detail-main">
+                    <div class="container">
+                        <div class="booksmedia-detail-box">
+                            <div class="detailed-box">
+                                <div class="col-xs-12 col-sm-5 col-md-3">
+                                    <div class="post-thumbnail">
+                                        <div class="book-list"></div>
+                                        <img src="{{ asset('uploads/images/' ~ book.image) }}" style="width: 300px; height: 454px">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-7 col-md-6">
+                                    <div class="post-center-content">
+                                        <h2>{{  book.title }}</h2>
+                                        <p><strong>Author:</strong> {{ book.author }}</p>
+                                        <p><strong>Rating:</strong> </p>
+                                        <p><strong>Publisher:</strong> {{ book.publisher }}</p>
+                                        <p><strong>Page:</strong> {{ book.page }}</p>
+                                        <p><strong>Year:</strong> {{ book.year ? book.year|date('Y-m-d') : '' }}</p>
+                                        <p><strong>Description:</strong> {{ book.description }}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="clearfix"></div>
+                            <br>
+                            <br>
+                            <div class="table-tabs" id="responsiveTabs">
+                                <ul class="nav nav-tabs">
+                                    <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">On Shelf Books</a> </li>
+                                    <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionC">Details</a></li>
+                                    <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionD">Comments</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="sectionB" class="tab-pane fade in">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Description</th>
+                                                <th>Image</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for onshelfbook in onshelfbooks %}
+                                                <tr>
+                                                    <td>{{ onshelfbook.title }}</td>
+                                                    <td>{{ onshelfbook.description }}</td>
+                                                    <td><img src="{{ asset('uploads/images/' ~ onshelfbook.image) }}" style="height:80px"/></td>
+                                                    <td>
+                                                        <form action="{{ path('user_reservation_new', {'bid': onshelfbook.bookid, 'osbid': onshelfbook.id}) }}" method="post">
+                                                            Days : <input type="number" id="days" name="days" value="1"/>
+                                                            Checkin Date : <input type="date" id="checkin" name="checkin"/>
+                                                            <input type="submit" value="Reservefsa" class="btn btn-success"/>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="8">no records found</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="sectionC" class="tab-pane fade in">
+                                        <p>{{ book.detail | raw }}</p>
+                                    </div>
+                                    <div id="sectionD" class="tab-pane fade in">
+                                        <ul class="comment-row">
+                                        {% for rs in comments %}
+                                            <li>
+                                                <h5>{{ rs.subject}} [Rate : {{ rs.rate }}]</h5>
+                                                <p>{{ rs.comment }}</p>
+                                                <hr>
+                                            </li>
+                                        {% endfor %}
+                                        </ul>
+                                        <br>
+                                        {% if app.user %}
+                                            <h3>Write your comment</h3>
+                                            <br>
+                                            {{  include('messages.html.twig') }}
+                                            <form name="comment" action="{{ path('user_new_comment', {'id': book.id}) }}" role="form" method="post" >
+                                                <div class="row">
+                                                    <div class="col-md-7 col-sm-7">
+                                                        <div class="form-group">
+                                                            <input class="form-control" type="text" placeholder="Subject" id="comment_subject" name="comment[subject]" maxlength="70" value="" aria-required="true" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7 col-sm-7">
+                                                        <div class="form-group">
+                                                            <select class="form-control" placeholder="Rate" id="comment_rate" name="comment[rate]" aria-required="true">
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <textarea class="form-control" placeholder="Your comment" id="comment_comment" name="comment[comment]" maxlength="255" aria-required="true"></textarea>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group form-submit">
+                                                            <input type="hidden" name="token" value="{{ csrf_token('comment') }}"/>
+                                                            <button class="btn btn-orange">Send Comment</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        {% else %}
+                                            <i>If you want to add a comment, please <u><a href="/loginuser">Login</a></u></i>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('home') }}" style="color: white; margin-top: -100px" class="btn btn-info">Back to Home</a>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock %}

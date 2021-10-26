@@ -1,0 +1,79 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }}'s Comments{% endblock %}
+
+{% block body %}
+
+    <!-- Start: Page Banner -->
+    <section class="page-banner services-banner">
+        <div class="container">
+            <div class="banner-header">
+                <h2>User Comments Listing</h2>
+                <span class="underline center"></span>
+            </div>
+            <div class="breadcrumb">
+                <ul>
+                    <li><a href="{{path('home')}}">Home</a></li>
+                    <li>User Comments</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- End: Page Banner -->
+
+    <div style="width: 800px; height: 300px"></div>
+
+    <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+                <div class="books-media-list">
+                    <div class="container">
+
+                        {{ include('user/usermenu.html.twig') }}
+
+                        <div class="row" style=" margin: -265px 0 0 300px; float: left">
+
+                            <div class="booksmedia-detail-box">
+
+                                <br>
+                                <h1>Comment index</h1>
+                                <br>
+
+                                <table class="table col-md-9">
+                                    <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>Comment</th>
+                                        <th>Status</th>
+                                        <th>Book</th>
+                                        <th>Created_at</th>
+                                        <th>Rate</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for comment in comments %}
+                                        <tr>
+                                            <td>{{ comment.subject }}</td>
+                                            <td>{{ comment.comment }}</td>
+                                            <td>{{ comment.status }}</td>
+                                            <td><a href="{{ path('book_show', {'id': comment.bookid}) }}">{{ comment.title }}</a></td>
+                                            <td>{{ comment.created_at }}</td>
+                                            <td>{{ comment.rate }}</td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="10">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock %}

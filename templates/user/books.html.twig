@@ -1,0 +1,50 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }}'s Books{% endblock %}
+
+{% block body %}
+
+    <!-- Start: Page Banner -->
+    <section class="page-banner services-banner">
+        <div class="container">
+            <div class="banner-header">
+                <h2>User Books Listing</h2>
+                <span class="underline center"></span>
+            </div>
+            <div class="breadcrumb">
+                <ul>
+                    <li><a href="{{path('home')}}">Home</a></li>
+                    <li>User Books</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- End: Page Banner -->
+
+    <div style="width: 800px; height: 300px"></div>
+
+    <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+                <div class="books-media-list">
+                    <div class="container">
+
+                        {{ include('user/usermenu.html.twig') }}
+
+                        <div class="row" style=" margin: -265px 0 0 300px; float: left">
+
+                            <div class="booksmedia-detail-box">
+
+
+                                <br>
+                                Books
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock %}

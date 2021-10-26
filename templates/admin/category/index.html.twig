@@ -1,0 +1,103 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Category Home Page{% endblock %}
+
+{% block body %}
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <a href="{{ path('admin_category_new') }}" class="btn btn-block btn-success col-md-5">Create New Category</a>
+
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/admin">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Category</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <h2 class="page-title">Category List</h2>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Parentid</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Keywords</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for category in categories %}
+                                    <tr>
+                                        <td>{{ category.id }}</td>
+                                        <td>{{ category.parentid }}</td>
+                                        <td>{{ category.title }}</td>
+                                        <td>{{ category.keywords }}</td>
+                                        <td>{{ category.description }}</td>
+                                        <td>{{ category.image }}</td>
+                                        <td>{{ category.status }}</td>
+                                        <td>
+                                            <button type="button" class="btn-block btn-warning"> <a href="{{ path('admin_category_show', {'id': category.id}) }}">Show</a> </button>
+                                            <button type="button" class="btn-block btn-warning"> <a href="{{ path('admin_category_edit', {'id': category.id}) }}">Edit</a> </button>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="10">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+{% endblock %}

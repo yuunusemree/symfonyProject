@@ -1,0 +1,181 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{setting[0].title}}{% endblock %}
+{% block keywords %}{{ setting[0].keywords }}{% endblock %}
+{% block description %}{{ setting[0].description }}{% endblock %}
+
+{% block slider %} {% include ('home/slider.html.twig') %} {% endblock %}
+
+{% block body %}
+    <!-- Start: Search Section -->
+    <section class="search-filters">
+        <div class="container">
+            <div class="filter-box">
+                <h3>What are you looking for at the library?</h3>
+                <form action="http://libraria.demo.presstigers.com/index.html" method="get">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label class="sr-only" for="keywords">Search by Keyword</label>
+                            <input class="form-control" placeholder="Search by Keyword" id="keywords" name="keywords" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <select name="catalog" id="catalog" class="form-control">
+                                <option>Search the Catalog</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <select name="category" id="category" class="form-control">
+                                <option>All Categories</option>
+                                <option>Category 01</option>
+                                <option>Category 02</option>
+                                <option>Category 03</option>
+                                <option>Category 04</option>
+                                <option>Category 05</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="form-group">
+                            <input class="form-control" type="submit" value="Search">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- End: Search Section -->
+
+    <!-- Start: Welcome Section -->
+    <section class="welcome-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="welcome-wrap">
+                        <div class="welcome-text">
+                            <h2 class="section-title">Welcome to the libraria</h2>
+                            <span class="underline left"></span>
+                            <p class="lead">The standard chunk of Lorem Ipsum used since</p>
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humor, or randomized words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humor, or non-characteristic words etc.</p>
+                            <a class="btn btn-primary" href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="facts-counter">
+                        <ul>
+                            <li class="bg-light-green">
+                                <div class="fact-item">
+                                    <div class="fact-icon">
+                                        <i class="ebook"></i>
+                                    </div>
+                                    <span>eBooks<strong class="fact-counter">45780</strong></span>
+                                </div>
+                            </li>
+                            <li class="bg-green">
+                                <div class="fact-item">
+                                    <div class="fact-icon">
+                                        <i class="eaudio"></i>
+                                    </div>
+                                    <span>eAudio<strong class="fact-counter">32450</strong></span>
+                                </div>
+                            </li>
+                            <li class="bg-red">
+                                <div class="fact-item">
+                                    <div class="fact-icon">
+                                        <i class="magazine"></i>
+                                    </div>
+                                    <span>Magazine<strong class="fact-counter">14450</strong></span>
+                                </div>
+                            </li>
+                            <li class="bg-blue">
+                                <div class="fact-item">
+                                    <div class="fact-icon">
+                                        <i class="videos"></i>
+                                    </div>
+                                    <span>Videos<strong class="fact-counter">32450</strong></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="welcome-image"></div>
+    </section>
+    <!-- End: Welcome Section -->
+
+
+
+    <div class="booksmedia-fullwidth">
+        <div class="container">
+            <h2 class="section-title text-center">Popular Items</h2>
+            <span class="underline center"></span>
+            <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <ul class="popular-items-detail-v2">
+                {% for rs in lastbooks %}
+                    <li>
+                        <div class="book-list-icon yellow-icon"></div>
+                        <figure>
+                            <img src="{{ asset('uploads/images/' ~ rs.image)}}" style="width: 360px; height: 540px">
+                            <figcaption>
+                                <header>
+                                    <h4><a href="{{ path('book_show', {'id': rs.id})}}">{{ rs.title }}</a></h4>
+                                    <p><strong>Author:</strong>{{ rs.author }}</p>
+                                </header>
+                                    <p>{{ rs.description }}</p>
+                                </figcaption>
+                        </figure>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <!-- Start: Category Filter -->
+
+    <br><br><br><br>
+
+
+    <!-- Start: Our Community Section -->
+    <section class="community-testimonial">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Recommends From our Community</h2>
+                <span class="underline center"></span>
+                <p class="lead"></p>
+            </div>
+            <div class="owl-carousel">
+                {% for rs in books %}
+                    <div class="single-testimonial-box">
+                        <div class="top-portion">
+                            <img src="{{ asset('uploads/images/' ~ rs.image)}}" style="width: 170px; height: 252px" />
+                            <div class="user-comment">
+                                <div class="arrow-left"></div>
+                                <blockquote cite="#">
+                                    {{ rs.description }}
+                                </blockquote>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="bottom-portion">
+                            <a class="author">
+                                {{ rs.title }}
+                            </a>
+                            <div class="social-share-links">
+                                <a href="{{ path('book_show', {'id': rs.id})}}" class="btn-sm btn-primary" style="margin-right: 15px">Show More</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- End: Our Community Section -->
+
+
+{% endblock %}

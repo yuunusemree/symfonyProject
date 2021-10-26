@@ -1,0 +1,15 @@
+<div class="col-md-2" style="margin-top: -250px">
+    <aside id="secondary" class="sidebar widget-area" data-accordion-group>
+        <img style="vertical-align: center; margin-outside: -5px" src="{{ asset('uploads/images/' ~ app.user.image) }}" alt="user" class="img-circle" width="75px">
+        <br><h5 style="margin-top: 5px">{{ app.user.name }} {{ app.user.surname }}</h5>
+        <div class="widget widget_related_search open" style="margin-top: 20px" data-accordion>
+            <div class="widget_categories" data-content>
+                <a href="/user"><h4>Profile</h4></a>
+                <a href="/user/book"><h4>Books</h4></a>
+                <a href="/user/comments"><h4>Comments</h4></a>
+                <a href="/user/reservations"><h4>Reservations</h4></a>
+                <a href="/logout"><h4>Logout</h4></a>
+            </div>
+        </div>
+    </aside>
+</div>

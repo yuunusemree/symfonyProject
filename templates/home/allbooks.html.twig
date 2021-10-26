@@ -1,0 +1,58 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}All Books{% endblock %}
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block body %}
+
+    <!-- Start: Page Banner -->
+    <section class="page-banner services-banner">
+        <div class="container">
+            <div class="banner-header">
+                <h2>All Books</h2>
+                <span class="underline center"></span>
+            </div>
+            <div class="breadcrumb">
+                <ul>
+                    <li><a href="{{path('home')}}">Home</a></li>
+                    <li>All Books</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- End: Page Banner -->
+
+    <br><br><br><br><br>
+    <!-- Start: Products Section -->
+    <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+                <div class="books-full-width">
+                    <div class="container">
+                        <div class="booksmedia-fullwidth">
+                            <ul>
+                                {% for rs in books %}
+                                <li>
+                                    <div class="book-list-icon yellow-icon"></div>
+                                    <figure>
+                                        <img src="{{ asset('uploads/images/' ~ rs.image)}}" style="width: 260px; height: 414px">
+                                        <figcaption>
+                                            <header>
+                                                <h4><a href="{{ path('book_show', {'id': rs.id})}}">{{ rs.title }}</a></h4>
+                                                <p><strong>Author:</strong>  {{ rs.author }}</p>
+                                            </header>
+                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Pellentesque dolor turpis, pulvinar varius.</p>
+                                            </figcaption>
+                                    </figure>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock %}

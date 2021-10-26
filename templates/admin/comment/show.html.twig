@@ -1,0 +1,123 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title">Comments Page</h4>
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/home">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Comment</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+
+
+    <h1>Comment Details</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ comment.id }}</td>
+            </tr>
+            <tr>
+                <th>Subject</th>
+                <td>{{ comment.subject }}</td>
+            </tr>
+            <tr>
+                <th>Comment</th>
+                <td>{{ comment.comment }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ comment.status }}</td>
+            </tr>
+            <tr>
+                <th>Ip</th>
+                <td>{{ comment.ip }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ comment.userid }}</td>
+            </tr>
+            <tr>
+                <th>Bookid</th>
+                <td>{{ comment.bookid }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{{ comment.updatedAt ? comment.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Rate</th>
+                <td>{{ comment.rate }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="btn-block" >
+        <a href="{{ path('admin_comment_edit', {'id': comment.id}) }}" class="btn-done btn-lg btn-light" style="clear: both">Edit</a>
+
+        {{ include('admin/comment/_delete_form.html.twig') }}
+    </div>
+
+    <a href="{{ path('admin_comment_index') }}" style="float: right; margin-top: -30px;" class="btn-primary btn-lg">Back to List</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    {% endblock %}

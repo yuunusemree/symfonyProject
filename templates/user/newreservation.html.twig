@@ -1,0 +1,121 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block body %}
+
+    <!-- Start: Page Banner -->
+    <section class="page-banner services-banner">
+        <div class="container">
+            <div class="banner-header">
+                <h2>User Panel</h2>
+                <span class="underline center"></span>
+            </div>
+            <div class="breadcrumb">
+                <ul>
+                    <li><a href="{{path('home')}}">Home</a></li>
+                    <li>Reservation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- End: Page Banner -->
+
+    <div style="width: 800px; height: 300px"></div>
+
+    <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+                <div class="books-media-list">
+                    <div class="container">
+
+                        {{ include('user/usermenu.html.twig') }}
+
+                        <div class="row" style=" margin: -265px 0 0 300px; float: left">
+
+                            <div class="booksmedia-detail-box">
+                                <br>
+                                <h3>Reservation Form</h3>
+                                <br>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Book</th>
+                                            <td>{{ book.title }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Checkin Date</th>
+                                            <td>{{ data.checkin | date("m/d/Y") }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Checkout Date</th>
+                                            <td>{{ data.checkout | date("m/d/Y") }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Days</th>
+                                            <td>{{ data.days }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                {{  include('messages.html.twig') }}
+
+                                <form name="reservation" method="post" >
+                                    <div class="row">
+                                        <div class="col-md-7 col-sm-7">
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" placeholder="First Name" id="reservation_name" name="reservation[name]" size="40" value="{{ app.user.name }}" aria-required="true" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-sm-7">
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" placeholder="Last Name" id="reservation_surname" name="reservation[surname]" size="40" value="{{ app.user.surname }}" aria-required="true" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-sm-7">
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" placeholder="Email" id="reservation_email" name="reservation[email]" size="50" value="{{ app.user.email }}" aria-required="true" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-sm-7">
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" placeholder="Phone" id="reservation_phone" name="reservation[phone]" maxlength="20" value="" aria-required="true" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <textarea class="form-control" placeholder="Your message" id="reservation_message" name="reservation[message]" maxlength="255" aria-required="true"></textarea>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group form-submit">
+                                                <input type="hidden" id="checkin" name="checkin" value="{{ data.checkin | date("m/d/Y") }}"/>
+                                                <input type="hidden" id="days" name="days" value="{{ data.days }}"/>
+                                                <input type="hidden" name="token" value="{{ csrf_token('form-reservation') }}"/>
+
+                                                hgfhgf
+                                                <button class="btn btn-orange">Reserve</button>
+                                            </div>
+                                        </div>
+                                        <div id="success">
+                                            <span>Your message was sent successfully! Our team will contact you soon.</span>
+                                        </div>
+
+                                        <div id="error">
+                                            <span>Something went wrong, try refreshing and submitting the form again.</span>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock %}
